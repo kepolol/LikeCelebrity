@@ -11,3 +11,7 @@
 ## Менторы:
 * Баранов Михаил - компания Mail.ru Group
 * Ефимов Владислав - компания Mail.ru Group
+
+# Данные
+* [Celebrity Face Recognition Dataset](https://github.com/prateekmehta59/Celebrity-Face-Recognition-Dataset)
+* [Предобученная модель](https://drive.google.com/drive/folders/1pwQ3H4aJ8a6yyJHZkTwtjcL4wYWQb7bn)
