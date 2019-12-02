@@ -6,30 +6,32 @@ from sqlalchemy.orm import sessionmaker
 from models import LogTable, Feedback
 
 
-eng = create_engine('sqlite:///database.db')
-Ses = sessionmaker(bind=eng)
+engine = create_engine('sqlite:///database.db')
+Session = sessionmaker(bind=engine)
 
 
 def init_db():
-    Base.metadata.create_all(bind=eng)
+    Base.metadata.create_all(bind=engine)
     defualt_value = 0
-    ses = Ses()
+    session = Session()
     fb = Feedback(positive=defualt_value,
                   negative=defualt_value)
-    ses.add(fb)
-    ses.commit()
-    ses.close()
+    session.add(fb)
+    session.commit()
+    session.close()
+
 
 def add_log(request_date, user_id, msg, resp, dur_time):
-    ses = Ses()
+    session = Session()
     log = LogTable(request_date=request_date,
                    user_id=user_id,
                    message_info=msg,
                    response=resp,
                    duration=dur_time)
-    ses.add(log)
-    ses.commit()
-    ses.close()
-    
+    session.add(log)
+    session.commit()
+    session.close()
+
+
 if __name__ == "__main__":
     init_db()

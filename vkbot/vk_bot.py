@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 from models import Feedback
 from random import random
 import sys
-sys.path.append("../ml_service")
+sys.path.append("../ML")
 from blackbox import Blackbox
 sys.path.append("../cel_base")
 from script_create import ImageTable
@@ -24,7 +24,7 @@ import pickle
 
 eng = create_engine('sqlite:///database.db')
 Ses = sessionmaker(bind=eng)
-e = create_engine('sqlite:///../cel_base/celebrities.db')
+e = create_engine('sqlite:///../../../LikeProject/cel_base/celebrities.db')
 S = sessionmaker(bind=e)
 
 
@@ -74,7 +74,7 @@ def bot_response(message, user_id):
     elif message == u"Да это я! Похож!":
         update_feedback("Good")
         return u"Отлично!"
-    elif message ==     "":
+    elif message == "":
         return u"Я могу обработать только одну фотографию."
     elif re.search(r'\b[Пп]\ривет\b', message):
         name = vk.method('users.get', {'user_ids': user_id})[0]['first_name']
