@@ -14,6 +14,7 @@ class Blackbox:
         face = extract_face(image)
         if face is None:
             return
+        self.face = face
         embedding = face2embedding(self.model, face)
         indexes = get_nns(self.annoy, embedding, self.n_neighbors)
         # return indexes
