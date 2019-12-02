@@ -1,4 +1,4 @@
-# LikeCelebrity [![Build Status](https://travis-ci.org/kepolol/LikeCelebrity.svg?branch=master)](https://travis-ci.org/kepolol/LikeCelebrity)
+# LikeCelebrity [![Build Status](https://travis-ci.org/kepolol/LikeCelebrity.svg?branch=master)](https://travis-ci.org/kepolol/LikeCelebrity) [![Coverage Status](https://coveralls.io/repos/github/kepolol/LikeCelebrity/badge.svg?branch=master)](https://coveralls.io/github/kepolol/LikeCelebrity?branch=master)
 
 Бот для социальной сети vk.com позволяет находить по пользовательской фотографии наиболее похожую "звезду".
 
