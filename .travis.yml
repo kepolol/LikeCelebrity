@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.7"
+install:
+  - pip install -r requirements.txt
+  - pip install pytest pytest-pep8 coveralls pytest-cov
+script:
+  - py.test --pep8 && pytest --ignore=E402 --cov=.
+after_success:
+  - coveralls

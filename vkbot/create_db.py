@@ -20,6 +20,7 @@ def init_db():
     session.commit()
     session.close()
 
+
 def add_log(request_date, user_id, msg, resp, dur_time):
     session = Session()
     log = LogTable(request_date=request_date,
@@ -30,6 +31,7 @@ def add_log(request_date, user_id, msg, resp, dur_time):
     session.add(log)
     session.commit()
     session.close()
-    
+
+
 if __name__ == "__main__":
     init_db()
