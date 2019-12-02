@@ -16,4 +16,5 @@ class Blackbox:
             return
         embedding = face2embedding(self.model, face)
         indexes = get_nns(self.annoy, embedding, self.n_neighbors)
-        return indexes
+        # return indexes
+        return indexes, face
