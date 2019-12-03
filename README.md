@@ -22,7 +22,6 @@
 * Скачать весь репозиторий
 * Скачать [файл](https://yadi.sk/d/SDKBoWQJ9YRgGw)
 * Заменить в папке data/ файл stars_embeddings.ann на скачанный файл (имя оставить stars_embeddings.ann)
-* Выйти из папки LikeCelebrity/ и запустить команду: \n
-  docker build -t vkbot:v1 LikeCelebrity/
-  vkbot:v1 - имя образа:версия (можно указать произвольные)
+* Выйти из папки LikeCelebrity/ и запустить команду: docker build -t vkbot:v1 LikeCelebrity/
+* vkbot:v1 - имя образа:версия (можно указать произвольные)
 * Запустить приложение командой docker run vkbot:v1
