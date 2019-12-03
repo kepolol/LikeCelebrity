@@ -5,6 +5,6 @@ install:
   - pip install -r requirements.txt
   - pip install pytest pytest-pep8 coveralls pytest-cov
 script:
-  - py.test --pep8 && pytest --ignore=E402 --cov=.
+  - py.test --pep8 && python -m pytest --ignore=E402 --cov=.
 after_success:
   - coveralls

@@ -7,7 +7,7 @@ import re
 
 N_TREES = 1000
 EMBEDDINGS_DIR = '/Users/mac/GIT/LikeCelebrity/CelebsEmbeddings/'
-ANNOY_DIR = '../data/stars_embeddings.ann'
+ANNOY_DIR = '/data/stars_embeddings.ann'
 
 
 def save_to_annoy(n_trees=N_TREES, embs_path=EMBEDDINGS_DIR, ann_path=ANNOY_DIR, metrica='euclidean'):

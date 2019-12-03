@@ -15,6 +15,6 @@ class ImageTable(Base):
     name = Column(String)
 
 
-engine = create_engine('sqlite:///../data/celebrities.db')
+engine = create_engine('sqlite:///data/celebrities.db')
 Session = sessionmaker(bind=engine)
 Base.metadata.create_all(bind=engine)

@@ -8,9 +8,9 @@ from sqlalchemy import create_engine
 from models import Feedback
 from random import random
 import sys
-sys.path.append("../ML")
+sys.path.append("ML/")
 from blackbox import Blackbox
-sys.path.append("../cel_base")
+sys.path.append("cel_base/")
 from script_create import ImageTable
 import vk_api
 import urllib
@@ -23,9 +23,9 @@ import yadisk
 
 
 y = yadisk.YaDisk(token='AgAAAAA7LnbJAAYCAyDjyqmIDUXeoGtgE9eDzvM')
-eng = create_engine('sqlite:///../data/database.db')
+eng = create_engine('sqlite:///data/database.db')
 Ses = sessionmaker(bind=eng)
-e = create_engine('sqlite:///../data/celebrities.db')
+e = create_engine('sqlite:///data/celebrities.db')
 S = sessionmaker(bind=e)
 
 
