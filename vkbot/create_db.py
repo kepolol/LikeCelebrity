@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from models import LogTable, Feedback
 
 
-engine = create_engine('sqlite:///../data/database.db')
+engine = create_engine('sqlite:///data/database.db')
 Session = sessionmaker(bind=engine)
 
 
