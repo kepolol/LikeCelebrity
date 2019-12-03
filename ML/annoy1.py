@@ -6,8 +6,8 @@ import os
 import re
 
 N_TREES = 1000
-EMBEDDINGS_DIR = '/Users/mac/GIT/LikeCelebrity/CelebsEmbeddings/'
-ANNOY_DIR = '/data/stars_embeddings.ann'
+EMBEDDINGS_DIR = 'tests/embeddings/'
+ANNOY_DIR = 'data/stars_embeddings.ann'
 
 
 def save_to_annoy(n_trees=N_TREES, embs_path=EMBEDDINGS_DIR, ann_path=ANNOY_DIR, metrica='euclidean'):
@@ -40,6 +40,3 @@ def get_nns(annoy, embedding, n_neighbors):
     index = annoy.get_nns_by_vector(embedding, n_neighbors)
     return index
 
-
-if __name__ == '__main__':
-    save_to_annoy()
