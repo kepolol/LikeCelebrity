@@ -1,4 +1,5 @@
-import sys, os
+import sys
+import os
 sys.path.append("ML/")
 from blackbox import Blackbox
 from annoy1 import save_to_annoy
