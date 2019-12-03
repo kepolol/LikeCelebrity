@@ -1,2 +1,2 @@
-keras_model_path = '/home/anton/LikeCelebrity/data/facenet_keras.h5'
-annoy_model_path = '/home/anton/LikeCelebrity/data/stars_embeddings.ann'
+keras_model_path = '/data/facenet_keras.h5'
+annoy_model_path = '/test_stars_embeddings.ann'

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
-from .script_create import ImageTable, Session
+from script_create import ImageTable, Session
 import json
 
 
