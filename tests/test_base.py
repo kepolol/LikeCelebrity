@@ -1,17 +1,12 @@
-import pytest
 import sys
 sys.path.append("vkbot/")
 from models import Feedback
 sys.path.append("vkbot/")
-from create_db import init_db, Session
+from create_db import Session
 
 
-@pytest.fixture()
-def init_base():
-    init_db()
-
-def test_check_defult_feedback(init_base):
+def test_check_default_feedback_neg():
     session = Session()
-    check = session.query(Feedback.positive).filter(Feedback.id_ == 2).first()[0]
+    check = session.query(Feedback.negative).filter(Feedback.id_ == 1).first()[0]
+    session.close()
     assert check == 0
- 
