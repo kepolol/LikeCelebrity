@@ -7,7 +7,7 @@ import json
 
 def inserter():
     k_proc = 0
-    with open("/data/file.txt", "r") as file:
+    with open("data/file.txt", "r") as file:
         data = json.load(file)
     for name_of_star in data:
         print('load %d/%d' % (k_proc, len(data)))
