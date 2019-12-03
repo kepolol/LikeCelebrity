@@ -39,4 +39,3 @@ def get_nns(annoy, embedding, n_neighbors):
     # annoy = load_from_annoy()
     index = annoy.get_nns_by_vector(embedding, n_neighbors)
     return index
-
