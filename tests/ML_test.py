@@ -1,5 +1,6 @@
 import sys
 sys.path.append("../ML")
+print(sys.path)
 from blackbox import Blackbox
 
 model = Blackbox(1)
