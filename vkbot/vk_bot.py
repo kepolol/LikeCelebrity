@@ -122,7 +122,7 @@ for event in longpoll.listen():
                         resp = u"На фото я не вижу лиц."
                         write_msg(event.user_id, resp)
                         dur_time = time.time() - start
-                        add_log(time.asctime(), event.user_id, u"Не было распознано лица.", resp, dur_time)               
+                        add_log(time.asctime(), event.user_id, u"Не было распознано лица.", resp, dur_time)
                     else:
                         indxs = indxs[0]
                         face = box.face
@@ -132,9 +132,14 @@ for event in longpoll.listen():
                             y.download(''.join(['Celeb/', str(indxs[i]), '.jpg']), 'photo_test.jpg')
                             session.close()
                             cv2.imwrite("face.jpg", face)
-                            vk.method('messages.send', {'user_id': event.user_id, 'message': "Ты похож на " + name + "!", 'random_id': random()})
+                            vk.method('messages.send', {'user_id': event.user_id,
+                                                        'message': "Ты похож на " + name + "!",
+                                                        'random_id': random()})
                             send_photo(event.user_id)
-                        vk.method('messages.send', {'user_id': event.user_id, 'message': "Оцени!",'keyboard': keyboard.get_keyboard(), 'random_id': random()})
+                        vk.method('messages.send', {'user_id': event.user_id,
+                                                    'message': "Оцени!",
+                                                    'keyboard': keyboard.get_keyboard(),
+                                                    'random_id': random()})
                         msg = vk.get_api().messages.getById(message_ids=event.message_id)
                         photo_url = msg['items'][0]['attachments'][0]['photo']['sizes'][5]['url']
                         resp = vk.method("photos.getMessagesUploadServer")['upload_url']
