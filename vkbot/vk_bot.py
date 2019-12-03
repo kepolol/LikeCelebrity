@@ -149,7 +149,8 @@ if __name__ == '__main__':
                         resp = u"Ты пытаешься мне отправить что то не то...\nОтправь мне свою фотографию."
                         write_msg(event.user_id, resp)
                         dur_time = time.time() - start
-                        add_log(time.asctime(), event.user_id, u"Отправленное вложение не является фото", resp, dur_time)
+                        add_log(time.asctime(), event.user_id,
+                                u"Отправленное вложение не является фото", resp, dur_time)
                 else:
                     resp = bot_response(event.message, event.user_id)
                     write_msg(event.user_id, resp)
