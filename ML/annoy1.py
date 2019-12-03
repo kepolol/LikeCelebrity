@@ -26,7 +26,7 @@ def save_to_annoy(n_trees=N_TREES, embs_path=EMBEDDINGS_DIR, ann_path=annoy_mode
     annoy.build(n_trees)
     annoy.save(ann_path)
     print('saved correctly at {}'.format(ann_path))
-    
+
 
 def load_annoy(ann_path=annoy_model_path, metrica='euclidean'):
     annoy = AnnoyIndex(128, metrica)

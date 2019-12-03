@@ -11,7 +11,6 @@ def face2embedding(model, data):
 
 def get_embedding(model, face_pixels):
     face_pixels = face_pixels.astype('float32')
-    
     # standardize pixel values across channels (global)
     mean, std = face_pixels.mean(), face_pixels.std()
     face_pixels = (face_pixels - mean) / std

@@ -9,7 +9,7 @@ Base = declarative_base()
 
 class LogTable(Base):
     __tablename__ = "logs"
-    
+
     id_ = Column(Integer, primary_key=True)
     request_date = Column(String)
     user_id = Column(Integer)
