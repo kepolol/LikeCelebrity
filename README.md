@@ -14,4 +14,8 @@
 
 # Данные
 * [Celebrity Face Recognition Dataset](https://github.com/prateekmehta59/Celebrity-Face-Recognition-Dataset)
-* [Предобученная модель](https://drive.google.com/drive/folders/1pwQ3H4aJ8a6yyJHZkTwtjcL4wYWQb7bn)
+* [Предобученная keras модель](https://drive.google.com/drive/folders/1pwQ3H4aJ8a6yyJHZkTwtjcL4wYWQb7bn)
+* Для бота использовалась лишь  [часть](https://drive.google.com/open?id=1lpM_nzwkMJc7QrRig3VVh7_fNtTaTPwH) датасета CFRD (10 случайных фото для каждой звезды)
+* [Эмбеддинги](https://yadi.sk/d/SDKBoWQJ9YRgGw) этих фото, переведенные в пространство [Annoy](https://github.com/spotify/annoy)
+
+# Инструкция по установке:
