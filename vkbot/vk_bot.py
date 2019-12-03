@@ -19,12 +19,13 @@ import cv2
 import requests
 import time
 import re
-import pickle
+import yadisk
 
 
-eng = create_engine('sqlite:///database.db')
+y = yadisk.YaDisk(token='AgAAAAA7LnbJAAYCAyDjyqmIDUXeoGtgE9eDzvM')
+eng = create_engine('sqlite:///../data/database.db')
 Ses = sessionmaker(bind=eng)
-e = create_engine('sqlite:///../../../LikeProject/cel_base/celebrities.db')
+e = create_engine('sqlite:///../data/celebrities.db')
 S = sessionmaker(bind=e)
 
 
@@ -123,13 +124,12 @@ for event in longpoll.listen():
                         dur_time = time.time() - start
                         add_log(time.asctime(), event.user_id, u"Не было распознано лица.", resp, dur_time)               
                     else:
+                        indxs = indxs[0]
                         face = box.face
                         for i in range(len(indxs)):
                             session = S()
-                            blob = session.query(ImageTable.image).filter(ImageTable.key == indxs[i]).first()[0]
                             name = session.query(ImageTable.name).filter(ImageTable.key == indxs[i]).first()[0]
-                            img = pickle.loads(blob)
-                            cv2.imwrite("photo_test.jpg", img)
+                            y.download(''.join(['Celeb/', str(indxs[i]), '.jpg']), 'photo_test.jpg')
                             session.close()
                             cv2.imwrite("face.jpg", face)
                             vk.method('messages.send', {'user_id': event.user_id, 'message': "Ты похож на " + name + "!", 'random_id': random()})

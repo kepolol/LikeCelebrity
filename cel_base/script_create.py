@@ -16,9 +16,8 @@ class ImageTable(Base):
     id_ = Column(Integer, primary_key=True)
     key = Column(Integer)
     name = Column(String)
-    image = Column(Binary)
 
 
-engine = create_engine('sqlite:///celebrities.db')
+engine = create_engine('sqlite:///../data/celebrities.db')
 Session = sessionmaker(bind=engine)
 Base.metadata.create_all(bind=engine)

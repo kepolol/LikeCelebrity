@@ -1,13 +1,15 @@
+import sys
+sys.path.append("../")
 import numpy as np
 from gensim.similarities.index import AnnoyIndex
+from setup import annoy_model_path
 import os
 import re
 
 N_TREES = 1000
 EMBEDDINGS_DIR = '/Users/mac/GIT/LikeCelebrity/CelebsEmbeddings/'
-ANNOY_PATH = '/home/anton/LikeProject/cel_base/annoy1/stars_embeddings.ann'
 
-def save_to_annoy(n_trees=N_TREES, embs_path=EMBEDDINGS_DIR, ann_path=ANNOY_PATH, metrica='euclidean'):
+def save_to_annoy(n_trees=N_TREES, embs_path=EMBEDDINGS_DIR, ann_path=annoy_model_path, metrica='euclidean'):
     dict_of_files = {}
     ordered_npzs = []
     for name in os.listdir(embs_path):

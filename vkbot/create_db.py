@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from models import Base
+from .models import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import LogTable, Feedback
+from .models import LogTable, Feedback
 
 
-engine = create_engine('sqlite:///database.db')
+engine = create_engine('sqlite:///../data/database.db')
 Session = sessionmaker(bind=engine)
 
 
