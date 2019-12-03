@@ -20,6 +20,7 @@
 
 # Инструкция по установке:
 * Скачать весь репозиторий
+* Получить токен в сообществе ВК и добавить его в файл get_token.py
 * Скачать [файл](https://yadi.sk/d/SDKBoWQJ9YRgGw)
 * Заменить в папке data/ файл stars_embeddings.ann на скачанный файл (имя оставить stars_embeddings.ann)
 * Выйти из папки LikeCelebrity/ и запустить команду: docker build -t vkbot:v1 LikeCelebrity/
