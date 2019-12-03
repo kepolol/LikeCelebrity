@@ -95,65 +95,65 @@ def resp_work(user_id, message, start):
     dur_time = round(time.time() - start, 4)
     add_log(time.asctime(), event.user_id, event.message, resp, dur_time)
 
+if __name__ == '__main__':
+    token = "01e71dc0db9523a795691bcdc5f346b834b2138deb7d6591b14af99e78ffe3119001c950623abb1edae46"
 
-token = "01e71dc0db9523a795691bcdc5f346b834b2138deb7d6591b14af99e78ffe3119001c950623abb1edae46"
+    vk = vk_api.VkApi(token=token)
 
-vk = vk_api.VkApi(token=token)
+    longpoll = VkLongPoll(vk)
+    keyboard = VkKeyboard(one_time=True)
 
-longpoll = VkLongPoll(vk)
-keyboard = VkKeyboard(one_time=True)
+    keyboard.add_button(u'Ты ошибся...', color=VkKeyboardColor.NEGATIVE)
+    keyboard.add_button(u'Да это я! Похож!', color=VkKeyboardColor.POSITIVE)
 
-keyboard.add_button(u'Ты ошибся...', color=VkKeyboardColor.NEGATIVE)
-keyboard.add_button(u'Да это я! Похож!', color=VkKeyboardColor.POSITIVE)
+    box = Blackbox(1)
 
-box = Blackbox(1)
-
-for event in longpoll.listen():
-    if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-        start = time.time()
-        attach_data = event.attachments
-        if attach_data:
-            if len(attach_data) == 2:
-                if attach_data["attach1_type"] == "photo":
-                    write_msg(event.user_id, u"Фото принято, обрабатываю...")
-                    upload_photo(event.message_id)
-                    indxs = box.send_picture("test.jpg")
-                    if indxs is None:
-                        resp = u"На фото я не вижу лиц."
+    for event in longpoll.listen():
+        if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+            start = time.time()
+            attach_data = event.attachments
+            if attach_data:
+                if len(attach_data) == 2:
+                    if attach_data["attach1_type"] == "photo":
+                        write_msg(event.user_id, u"Фото принято, обрабатываю...")
+                        upload_photo(event.message_id)
+                        indxs = box.send_picture("test.jpg")
+                        if indxs is None:
+                            resp = u"На фото я не вижу лиц."
+                            write_msg(event.user_id, resp)
+                            dur_time = time.time() - start
+                            add_log(time.asctime(), event.user_id, u"Не было распознано лица.", resp, dur_time)
+                        else:
+                            indxs = indxs[0]
+                            face = box.face
+                            for i in range(len(indxs)):
+                                session = S()
+                                name = session.query(ImageTable.name).filter(ImageTable.key == indxs[i]).first()[0]
+                                y.download(''.join(['Celeb/', str(indxs[i]), '.jpg']), 'photo_test.jpg')
+                                session.close()
+                                cv2.imwrite("face.jpg", face)
+                                vk.method('messages.send', {'user_id': event.user_id,
+                                                            'message': "Ты похож на " + name + "!",
+                                                            'random_id': random()})
+                                send_photo(event.user_id)
+                            vk.method('messages.send', {'user_id': event.user_id,
+                                                        'message': "Оцени!",
+                                                        'keyboard': keyboard.get_keyboard(),
+                                                        'random_id': random()})
+                            msg = vk.get_api().messages.getById(message_ids=event.message_id)
+                            photo_url = msg['items'][0]['attachments'][0]['photo']['sizes'][5]['url']
+                            resp = vk.method("photos.getMessagesUploadServer")['upload_url']
+                            dur_time = time.time() - start
+                            add_log(time.asctime(), event.user_id, str(photo_url), resp, dur_time)
+                    else:
+                        resp = u"Ты пытаешься мне отправить что то не то...\nОтправь мне свою фотографию."
                         write_msg(event.user_id, resp)
                         dur_time = time.time() - start
-                        add_log(time.asctime(), event.user_id, u"Не было распознано лица.", resp, dur_time)
-                    else:
-                        indxs = indxs[0]
-                        face = box.face
-                        for i in range(len(indxs)):
-                            session = S()
-                            name = session.query(ImageTable.name).filter(ImageTable.key == indxs[i]).first()[0]
-                            y.download(''.join(['Celeb/', str(indxs[i]), '.jpg']), 'photo_test.jpg')
-                            session.close()
-                            cv2.imwrite("face.jpg", face)
-                            vk.method('messages.send', {'user_id': event.user_id,
-                                                        'message': "Ты похож на " + name + "!",
-                                                        'random_id': random()})
-                            send_photo(event.user_id)
-                        vk.method('messages.send', {'user_id': event.user_id,
-                                                    'message': "Оцени!",
-                                                    'keyboard': keyboard.get_keyboard(),
-                                                    'random_id': random()})
-                        msg = vk.get_api().messages.getById(message_ids=event.message_id)
-                        photo_url = msg['items'][0]['attachments'][0]['photo']['sizes'][5]['url']
-                        resp = vk.method("photos.getMessagesUploadServer")['upload_url']
-                        dur_time = time.time() - start
-                        add_log(time.asctime(), event.user_id, str(photo_url), resp, dur_time)
+                        add_log(time.asctime(), event.user_id, u"Отправленное вложение не является фото", resp, dur_time)
                 else:
-                    resp = u"Ты пытаешься мне отправить что то не то...\nОтправь мне свою фотографию."
+                    resp = bot_response(event.message, event.user_id)
                     write_msg(event.user_id, resp)
-                    dur_time = time.time() - start
-                    add_log(time.asctime(), event.user_id, u"Отправленное вложение не является фото", resp, dur_time)
+                    dur_time = round(time.time() - start, 4)
+                    add_log(time.asctime(), event.user_id, u"Было отправлено более одного вложения", resp, dur_time)
             else:
-                resp = bot_response(event.message, event.user_id)
-                write_msg(event.user_id, resp)
-                dur_time = round(time.time() - start, 4)
-                add_log(time.asctime(), event.user_id, u"Было отправлено более одного вложения", resp, dur_time)
-        else:
-            resp_work(event.user_id, event.message, start)
+                resp_work(event.user_id, event.message, start)
